@@ -13,6 +13,8 @@ contract FinanceBank{
   bytes32[] public owner;
   bytes32[] public customerNames; 
 
+  bool public documentNames;
+
   uint amount;
 
   //Start
@@ -22,11 +24,26 @@ contract FinanceBank{
 	bool customerExist = false;
 	unit i = 0;
 	for(i=0; i <customerNames.length; i++){
-	  if(candidat)
+	  if(customerNames[i] == customerName){
+		customerExist = true;
+		break;
+	   }
 	}	
+	
+	if(customerExist  == false){
+	   customerNames[i+1] = _customerName;
+	}
 
       }
-  
-  
 
+   //2. Check if all the documents are uploaded
+    function checkForDocument(bool _documentName) view  public returns(bool) {
+      for(uint i =0; i<documentNames.length; i++){
+	 if(documentNames[i] == _documentName)
+		return true;
+	}
+	return false;
+      
+    }
+	
 }
